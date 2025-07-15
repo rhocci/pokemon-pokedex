@@ -248,3 +248,10 @@ input[name="pokemon"] {
 .show {
   visibility: visible!important;
 }
+
+@media screen and (max-width: 575.98px) {
+  .header {
+    flex-direction: column;
+    row-gap: 1.25rem;
+  }
+}
