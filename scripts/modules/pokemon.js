@@ -1,16 +1,22 @@
 import { el } from '../utils/createElement.js';
+import { getElements } from '../utils/getElement.js';
+import { searchPokemon } from './search.js';
+
+const { cardContainer, cardDetail } = getElements();
+export let allPokemons = [];
 
 /** 포켓몬 데이터 받아오기 */
 export const getPokemons = async function() {
   try {
     const res = await fetch('https://pokeapi.co/api/v2/pokemon?offset=0&limit=100');
     const data = await res.json();
-    // pokemonList : name, url 담은 객체 배열
     const pokemonList = data.results;
     const detailPromises = pokemonList.map(item => fetch(item.url).then(res => res.json()));
 
-    // Promise.all: 배열로 된 프라미스객체 모음을 병렬적으로 처리 
-    Promise.all(detailPromises).then(data => data.map(pokemon => renderPokemons(pokemon)));
+    allPokemons = await Promise.all(detailPromises);
+    allPokemons.map(pokemon => renderPokemons(pokemon));
+    
+    searchPokemon();
   } catch(error) {
     console.log(error);
     return;
@@ -18,7 +24,7 @@ export const getPokemons = async function() {
 };
 
 /** 데이터 카드 바인딩 */
-const renderPokemons = function(pokemon) {
+export const renderPokemons = (pokemon) => {
   // 카드 header
   const spanNo = el('span', {textContent: `No.${pokemon.id}`});
   const cardTitle = el('h2', {className: 'card__title', textContent: pokemon.species.name});
@@ -38,16 +44,11 @@ const renderPokemons = function(pokemon) {
   // 카드 합체
   const card = el('div', {className: 'card'}, cardHeader, cardBody, cardFooter);
 
-  // 카드 append
-  const cardContainer = document.querySelector('.container');
-
   cardContainer.append(card);
 };
 
 /** 버튼 이벤트리스너 */
 export const buttonEvent = () => {
-  const cardContainer = document.querySelector('.container');
-  const cardDetail = document.querySelector('.detail-wrapper');
 
   // 상세정보 이벤트
   cardContainer.addEventListener('click', (e) => {

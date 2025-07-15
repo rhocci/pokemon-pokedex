@@ -10,11 +10,11 @@
 html {
   font-family: 'Galmuri11', sans-serif;
   color: var(--text);
+  background: #e3edf0;
 }
 
 .wrapper {
   min-height: 100vh;
-  background: #e3edf0;
 }
 
 .header {
@@ -37,9 +37,6 @@ html {
 }
 
 #search-form {
-  display: flex;
-  align-items: flex-start;
-  column-gap: .75rem;
 }
 
 input[name="pokemon"] {
@@ -58,19 +55,6 @@ input[name="pokemon"] {
   background: #fff;
   padding-block: .25rem;
   padding-inline: 0.5rem;
-
-}
-
-button[type="submit"] {
-  padding-block: .25rem;
-  padding-inline: .5rem;
-  background: var(--point);
-  box-shadow: -2px -2px 0 #4f4f4f;
-  border: none;
-  
-  &:hover {
-    box-shadow: 2px 2px 0 #4f4f4f;
-  }
 }
 
 .container {
