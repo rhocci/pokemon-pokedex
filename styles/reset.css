@@ -15,7 +15,7 @@ html {
 
 /* Remove default margin in favour of better control in authored CSS */
 body, h1, h2, h3, h4, p,
-figure, blockquote, dl, dd {
+figure, blockquote, dl, dd, ul, li {
   margin-block-end: 0;
   margin: 0;
   padding: 0;
@@ -77,3 +77,6 @@ textarea:not([rows]) {
   scroll-margin-block: 5ex;
 }
 
+button {
+  cursor: pointer;
+}

@@ -3,16 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="reset.css" />
-  <link rel="stylesheet" href="index.css" />
-  <script type="module" src="script.js" defer></script>
+  <link rel="stylesheet" href="./styles/main.css" />
+  <script type="module" src="./scripts/main.js" defer></script>
   <title>Pokemon</title>
 </head>
 <body>
   <div class="wrapper">
     <header class="header">
       <h1><a href="#">Pokedéx</a></h1>
-      <span>by rhocci</span>
+      <form autocomplete="off" id="search-form">
+        <div class="search-typeahead">
+          <input 
+            name="pokemon"
+            id="pokemon"
+            type="search"
+            placeholder="검색하기" />
+          <!-- <ul>
+            <li>이상해씨</li>
+            <li>이상해풀</li>
+            <li>이상해꽃</li>
+          </ul> -->
+        </div>
+        <button type="submit">검색</button>
+      </form>
     </header>
 
     <main class="container">

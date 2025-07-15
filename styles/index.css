@@ -20,14 +20,14 @@ html {
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   position: sticky;
   top: 0;
   background: var(--main);
   padding-block: .75rem;
   padding-inline: 1rem;
   font-size: 0.9rem;
-  box-shadow: 0 4px 20px #00000020;
+  box-shadow: 0 3px 0px #00000020;
   z-index: 999;
 }
 
@@ -36,10 +36,41 @@ html {
   text-shadow: -3px 0px var(--text), 0px 3px var(--text), 0px 0px var(--text), 0px -1px var(--text);
 }
 
-.header span {
-  color: #ffffff;
-  opacity: 0.8;
-  font-size: 1rem;
+#search-form {
+  display: flex;
+  align-items: flex-start;
+  column-gap: .75rem;
+}
+
+input[name="pokemon"] {
+  padding-block: .25rem;
+  padding-inline: .5rem;
+  box-shadow: -2px -2px 0 #4f4f4f;
+  border: none;
+}
+
+.search-typeahead {
+  /* border: 2px solid #4f4f4f; */
+}
+
+.search-typeahead ul {
+  /* position: absolute; */
+  background: #fff;
+  padding-block: .25rem;
+  padding-inline: 0.5rem;
+
+}
+
+button[type="submit"] {
+  padding-block: .25rem;
+  padding-inline: .5rem;
+  background: var(--point);
+  box-shadow: -2px -2px 0 #4f4f4f;
+  border: none;
+  
+  &:hover {
+    box-shadow: 2px 2px 0 #4f4f4f;
+  }
 }
 
 .container {
@@ -55,7 +86,8 @@ html {
   border-radius: .5rem;
   background: var(--bg);
   overflow: hidden;
-  box-shadow: 0 0 8px #00000020;
+  box-shadow: 1px 3px 0px #00000040;
+  border: 1px solid #00000020;
   padding: .5rem;
 }
 
@@ -79,7 +111,7 @@ html {
 .card__header .card__title {
   font-size: 1.125rem;
   color: #232323;
-  filter: drop-shadow(2px 2px 0 #00000020);
+  filter: drop-shadow(2px 1px 0 #00000020);
 }
 
 .card__img {
@@ -91,10 +123,13 @@ html {
   width: 80%;
   padding: .375rem;
   border-radius: .75rem;
-  background: var(--point);
+  box-shadow: 1px 2px 0 #00000030;
   font-size: 0.9rem;
   color: #444;
-  cursor: pointer;
+
+  &:hover {
+    box-shadow: -1px -2px 0 #00000030;
+  }
 }
 
 .card__footer {
@@ -192,6 +227,7 @@ html {
   height: 100%;
   background: #00000040;
   backdrop-filter: blur(5px);
+  z-index: 1000;
 
   visibility: hidden;
 }
