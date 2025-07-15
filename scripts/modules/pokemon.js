@@ -8,14 +8,14 @@ export let allPokemons = [];
 /** 포켓몬 데이터 받아오기 */
 export const getPokemons = async function() {
   try {
-    const res = await fetch('https://pokeapi.co/api/v2/pokemon?offset=0&limit=100');
+    const res = await fetch('https://pokeapi.co/api/v2/pokemon?offset=0&limit=200');
     const data = await res.json();
     const pokemonList = data.results;
     const detailPromises = pokemonList.map(item => fetch(item.url).then(res => res.json()));
 
     allPokemons = await Promise.all(detailPromises);
     allPokemons.map(pokemon => renderPokemons(pokemon));
-    
+
     searchPokemon();
   } catch(error) {
     console.log(error);
