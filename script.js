@@ -5,14 +5,12 @@
     try {
       const res = await fetch('https://pokeapi.co/api/v2/pokemon?offset=0&limit=100');
       const data = await res.json();
-      const pokemonList = data.results;
-      
       // pokemonList : name, url 담은 객체 배열
+      const pokemonList = data.results;
       const detailPromises = pokemonList.map(item => fetch(item.url).then(res => res.json()));
 
       // Promise.all: 배열로 된 프라미스객체 모음을 병렬적으로 처리 
       Promise.all(detailPromises).then(data => data.map(pokemon => renderPokemons(pokemon)));
-
     } catch(error) {
       console.log(error);
       return;
@@ -29,7 +27,7 @@
     // 카드 body
     const img = el('img', {src: pokemon.sprites.front_default, alt: ''});
     const imgWrapper = el('div', {className: 'card__img'}, img);
-    const btn = el('button', {className: 'card__desc', type: 'button', textContent: '상세 정보'})
+    const btn = el('button', {className: 'card__desc', type: 'button', textContent: '상세정보'})
     const cardBody = el('div', {className: 'card__body'}, imgWrapper, btn);
 
     // 카드 footer

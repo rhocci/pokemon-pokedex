@@ -14,8 +14,7 @@ html {
 
 .wrapper {
   min-height: 100vh;
-  overflow-y: hidden;
-  background: #E0F7FA;
+  background: #e3edf0;
 }
 
 .header {
@@ -28,7 +27,8 @@ html {
   padding-block: .75rem;
   padding-inline: 1rem;
   font-size: 0.9rem;
-  box-shadow: 0 4px 8px #00000010;
+  box-shadow: 0 4px 20px #00000020;
+  z-index: 999;
 }
 
 .header h1 {
