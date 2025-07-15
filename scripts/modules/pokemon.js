@@ -43,6 +43,7 @@ export const renderPokemons = (pokemon) => {
 
   // 카드 합체
   const card = el('div', {className: 'card'}, cardHeader, cardBody, cardFooter);
+  card.setAttribute('data-pokemon-id', pokemon.id);
 
   cardContainer.append(card);
 };
