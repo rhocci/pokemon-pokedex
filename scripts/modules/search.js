@@ -1,6 +1,5 @@
-import { allPokemons, getPokemons, renderPokemons } from "./pokemon.js";
+import { allPokemons, renderPokemons } from "./pokemon.js";
 import { getElements } from '../utils/getElement.js';
-import { el } from '../utils/createElement.js';
 
 const { cardContainer } = getElements();
 
@@ -22,4 +21,9 @@ export const searchPokemon = () => {
       filteredPokemon.map(pokemon => renderPokemons(pokemon));
     }
   })
+};
+
+/** 필터링 기능 */
+export const filterPokemon = () => {
+  // 검색이랑 비슷하게 구현하면 될듯
 };

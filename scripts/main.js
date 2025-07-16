@@ -1,8 +1,7 @@
-import { buttonEvent, getPokemons } from './modules/pokemon.js';
-import { searchPokemon } from './modules/search.js';
+import { buttonEvent, getAllPokemons, getPokemons } from './modules/pokemon.js';
 
 (() => {
+  getAllPokemons();
   getPokemons();
   buttonEvent();
-  searchPokemon();
 })();

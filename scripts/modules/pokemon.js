@@ -3,23 +3,44 @@ import { getElements } from '../utils/getElement.js';
 import { searchPokemon } from './search.js';
 
 const { cardContainer, cardDetail } = getElements();
-export let allPokemons = [];
 
-/** 포켓몬 데이터 받아오기 */
-export const getPokemons = async function() {
+export let allPokemons = [];
+let currentPokemons = [];
+let currentPage = 0;
+
+const DATA_NUM_LIMIT = 20;
+
+/** 포켓몬 데이터 받아오기(전체) */
+export const getAllPokemons = async function () {
   try {
-    const res = await fetch('https://pokeapi.co/api/v2/pokemon?offset=0&limit=200');
+    const res = await fetch('https://pokeapi.co/api/v2/pokemon?offset=0&limit=1000');
     const data = await res.json();
     const pokemonList = data.results;
     const detailPromises = pokemonList.map(item => fetch(item.url).then(res => res.json()));
 
     allPokemons = await Promise.all(detailPromises);
-    allPokemons.map(pokemon => renderPokemons(pokemon));
 
     searchPokemon();
-  } catch(error) {
+  }
+  catch(error) {
+    console.error(error);
+  }
+};
+
+/** 포켓몬 데이터 받아오기(페이지) */
+export const getPokemons = async function() {
+  try {
+    const res = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${currentPage * 20}&limit=${DATA_NUM_LIMIT}`);
+    const data = await res.json();
+    const pokemonList = data.results;
+    const detailPromises = pokemonList.map(item => fetch(item.url).then(res => res.json()));
+
+    currentPokemons = await Promise.all(detailPromises);
+    cardContainer.innerHTML = '';
+    currentPokemons.map(pokemon => renderPokemons(pokemon));
+  }
+  catch(error) {
     console.log(error);
-    return;
   }
 };
 
@@ -50,6 +71,8 @@ export const renderPokemons = (pokemon) => {
 
 /** 버튼 이벤트리스너 */
 export const buttonEvent = () => {
+  const pageBtns = document.querySelector('.page-btns');
+  const currentPageNum = document.querySelector('.current-page');
 
   // 상세정보 이벤트
   cardContainer.addEventListener('click', (e) => {
@@ -66,4 +89,20 @@ export const buttonEvent = () => {
 
     detailWrapper.classList.remove('show');
   })
+
+  // 페이지네이션
+  pageBtns.addEventListener('click', (e) => {
+    const pageBtn = e.target.closest('.page-btn');
+
+    if (!pageBtn) {
+      return;
+    } else if (pageBtn.classList.contains('page-btn--prev')) {
+      currentPage = currentPage > 0 ? currentPage - 1 : 49;
+    } else if (pageBtn.classList.contains('page-btn--next')) {
+      currentPage = currentPage > 48 ? 0 : currentPage + 1;
+    }
+    
+    currentPageNum.textContent = `${currentPage + 1}페이지`;
+    getPokemons(currentPage);
+  });
 };
