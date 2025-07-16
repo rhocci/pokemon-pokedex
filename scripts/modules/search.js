@@ -1,7 +1,7 @@
 import { allPokemons, renderPokemons } from "./pokemon.js";
 import { getElements } from '../utils/getElement.js';
 
-const { cardContainer } = getElements();
+const { controlBar, cardContainer } = getElements();
 
 /** 검색 기능 */
 export const searchPokemon = () => {
@@ -11,6 +11,8 @@ export const searchPokemon = () => {
   searchInput.addEventListener('input', (e) => {
     const searchText = searchInput.value;
     
+    controlBar.classList.add('hide');
+
     cardContainer.innerHTML = '';
     const filteredPokemon  = allPokemons.filter(item => item.name.includes(searchText));
     
@@ -20,6 +22,8 @@ export const searchPokemon = () => {
       noResult.classList.remove('show');
       filteredPokemon.map(pokemon => renderPokemons(pokemon));
     }
+
+    if (searchText.length === 0) controlBar.classList.remove('hide');
   })
 };
 

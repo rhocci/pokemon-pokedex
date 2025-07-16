@@ -4,7 +4,7 @@
   --main: #00B8D4;
   --bg: #fff;
   --point: #B2EBF2;
-  --text: #004D40;
+  --text: #004247;
   --shadow: #4f4f4f;
 }
 
@@ -68,26 +68,24 @@ input[name="pokemon"] {
   align-items: center;
   column-gap: 1rem;
   margin-top: 2rem;
+  font-size: 1.2rem;
 }
 
 .page-btn {
   aspect-ratio: 1;
-  font-size: 2rme;
-  border: none;
+  border: 1px solid var(--text);
   border-radius: .5rem;
   background: var(--bg);
   box-shadow: 
-    -2px 0px var(--text),
-    0px 2px var(--text),
-    1px 0px var(--text),
-    0px -1px var(--text);;
+    -1px 0px var(--text),
+    0px -1px var(--text);
 
   img {
     width: 20px;
   }
 
   &:hover {
-    background: #999;
+    background: #DDDFE2;
   }
 }
 
@@ -97,13 +95,18 @@ input[name="pokemon"] {
   padding-inline: 1.5rem;
 }
 
-.container {
+.control-bar {
+  /* display: flex; */
+  max-height: 500px;
+  transition: max-height 400ms cubic-bezier(0.215, 0.610, 0.355, 1.000); /* easeOutCubic */
+}
+
+.card-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
   margin-block: 2rem;
 }
-
 
 .no-result {
   display: flex;
@@ -116,6 +119,7 @@ input[name="pokemon"] {
   transform: translate(-50%, -50%);
   font-size: 1.3rem;
   visibility: hidden;
+  text-align: center;
 }
 
 .card {
@@ -125,7 +129,6 @@ input[name="pokemon"] {
   box-shadow: 1px 3px 0px #00000040;
   border: 1px solid #00000020;
   padding: .5rem;
-  transition: all 0.2s;
 }
 
 .card__body {
@@ -152,7 +155,8 @@ input[name="pokemon"] {
 }
 
 .card__img {
-  
+  width: 96px;
+  aspect-ratio: 1;
 }
 
 .card__desc {
@@ -288,13 +292,18 @@ input[name="pokemon"] {
   visibility: visible!important;
 }
 
+.hide {
+  max-height: 0;
+  overflow: hidden;
+}
+
 @media screen and (max-width: 768px) {
   .header {
     flex-direction: column;
     row-gap: 1.25rem;
   }
 
-  .container {
+  .card-container {
     grid-template-columns: repeat(2, 1fr);
   }
 }
