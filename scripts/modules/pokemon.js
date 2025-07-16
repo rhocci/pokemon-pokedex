@@ -2,7 +2,7 @@ import { el } from '../utils/createElement.js';
 import { getElements } from '../utils/getElement.js';
 import { filterPokemon, searchPokemon } from './search.js';
 
-const { cardContainer, cardDetail } = getElements();
+const { cardContainer, controlBar, cardDetail } = getElements();
 
 export let allPokemons = [];
 let currentPokemons = [];
@@ -13,12 +13,20 @@ const DATA_NUM_LIMIT = 20;
 /** 포켓몬 데이터 받아오기(전체) */
 export const getAllPokemons = async function () {
   try {
+    const loading = document.querySelector('.loading');
+
+    loading.classList.add('show');
+    controlBar.style.display = 'none';
+    
     const res = await fetch('https://pokeapi.co/api/v2/pokemon?offset=0&limit=1000');
     const data = await res.json();
     const pokemonList = data.results;
     const detailPromises = pokemonList.map(item => fetch(item.url).then(res => res.json()));
-
+    
     allPokemons = await Promise.all(detailPromises);
+    
+    loading.classList.remove('show');
+    controlBar.style.display = 'flex';
 
     searchPokemon();
     filterPokemon();

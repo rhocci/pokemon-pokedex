@@ -191,6 +191,20 @@ input[name="pokemon"] {
   text-align: center;
 }
 
+.loading {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+  align-items: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.3rem;
+  visibility: hidden;
+  text-align: center;
+}
+
 .card {
   border-radius: .5rem;
   background: var(--bg);
