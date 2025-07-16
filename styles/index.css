@@ -367,19 +367,32 @@ input[name="pokemon"] {
 }
 
 .card__detail {
+  display: flex;
+  column-gap: 3rem;
+  align-items: center;
+
+  padding: 2rem;
+  color: #111;
   background: #fff;
-  width: 40%;
-  aspect-ratio: 3/2;
   border-radius: .5rem;
   border: 1px solid var(--shadow);
-  display: flex;
-  justify-content: center;
-  align-items: center;
   box-shadow: 2px 2px 0 var(--shadow);
+
+  div:first-child {
+    
+    img {
+    }
+  }
+
+  div:last-child {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+  }
   
-  font-size: 2.4rem;
-  font-weight: 700;
-  color: #111;
+  p {
+    max-width: 400px;
+  }
 }
 
 .show {
