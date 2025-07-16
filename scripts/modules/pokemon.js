@@ -1,6 +1,6 @@
 import { el } from '../utils/createElement.js';
 import { getElements } from '../utils/getElement.js';
-import { searchPokemon } from './search.js';
+import { filterPokemon, searchPokemon } from './search.js';
 
 const { cardContainer, cardDetail } = getElements();
 
@@ -21,6 +21,7 @@ export const getAllPokemons = async function () {
     allPokemons = await Promise.all(detailPromises);
 
     searchPokemon();
+    filterPokemon();
   }
   catch(error) {
     console.error(error);
@@ -92,7 +93,7 @@ export const buttonEvent = () => {
 
   // 페이지네이션
   pageBtns.addEventListener('click', (e) => {
-    const pageBtn = e.target.closest('.page-btn');
+    const pageBtn = e.target.closest('.btn');
 
     if (!pageBtn) {
       return;

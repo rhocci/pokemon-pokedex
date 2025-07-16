@@ -6,12 +6,12 @@
   <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon" />
   <link rel="stylesheet" href="./styles/main.css" />
   <script type="module" src="./scripts/main.js" defer></script>
-  <title>Pokedéx</title>
+  <title>Pokédex</title>
 </head>
 <body>
   <div class="wrapper">
     <header class="header">
-      <h1><a href="./index.html">Pokedéx</a></h1>
+      <h1><a href="./index.html">Pokédex</a></h1>
       <form autocomplete="off" id="search-form">
         <div class="search-typeahead">
           <input 
@@ -35,12 +35,35 @@
 
     <main class="page-wrapper">
       <div class="control-bar">
+        <div class="btn filter-btn">
+          <div>필터</div>
+          <ul class="types">
+            <li class="type type-normal">노말</li>
+            <li class="type type-fire">불</li>
+            <li class="type type-water">물</li>
+            <li class="type type-grass">풀</li>
+            <li class="type type-electric">전기</li>
+            <li class="type type-ice">얼음</li>
+            <li class="type type-fighting">격투</li>
+            <li class="type type-poison">독</li>
+            <li class="type type-ground">땅</li>
+            <li class="type type-flying">비행</li>
+            <li class="type type-psychic">에스퍼</li>
+            <li class="type type-bug">벌레</li>
+            <li class="type type-rock">바위</li>
+            <li class="type type-ghost">고스트</li>
+            <li class="type type-dragon">드래곤</li>
+            <li class="type type-dark">악</li>
+            <li class="type type-steel">강철</li>
+            <li class="type type-fairy">페어리</li>
+          </ul>
+        </div>
         <div class="page-btns">
-          <button type="button" class="page-btn page-btn--prev">
+          <button type="button" class="btn page-btn--prev">
             <img src="./assets/icon-arrow-l.svg" alt="이전 페이지" />
           </button>
           <span class="current-page">1페이지</span>
-          <button type="button" class="page-btn page-btn--next">
+          <button type="button" class="btn page-btn--next">
             <img src="./assets/icon-arrow-l.svg" alt="다음 페이지" style="rotate: 180deg"/>
           </button>
         </div>
